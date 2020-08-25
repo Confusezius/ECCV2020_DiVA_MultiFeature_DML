@@ -17,11 +17,15 @@ The majority of this codebase is built upon research and implementations provide
 Paper: https://arxiv.org/abs/2002.08473
 Repo: https://github.com/Confusezius/Revisiting_Deep_Metric_Learning_PyTorch
 
-This repository contains the DiVA extension to standard Deep Metric Learning by extending auxiliary and self-supervised features for improved generalization to unseen test classes.
+This repository contains the DiVA extension to standard Deep Metric Learning by extending auxiliary and self-supervised features for improved generalization to unseen test classes:
 
 **Contact**: Karsten Roth, karsten.rh1@gmail.com  
 
 *Suggestions are always welcome!*
+
+Architecturally, running DiVA extends DML like this:
+![Architecture](Images/arch.jpeg)
+
 
 ---
 ## Some Notes:
