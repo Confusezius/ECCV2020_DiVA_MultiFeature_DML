@@ -85,6 +85,8 @@ def diva_parameters(parser):
     parser.add_argument('--diva_alpha_shared',   default=0.3,  type=float, help='')
     parser.add_argument('--diva_alpha_intra',    default=0.3,  type=float, help='')
 
+    ### Original Paper-based reweighting.
+    parser.add_argument('--diva_fixed', action='store_true', help='')
     return parser
 
 
