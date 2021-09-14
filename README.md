@@ -56,7 +56,7 @@ https://github.com/Confusezius/Revisiting_Deep_Metric_Learning_PyTorch
 ---
 ## Training:
 
-__Update 14/09/21:__ _There was a slight error in the uploaded `fast_moco.py` script resulting in negative reweighting different to that mentioned in the paper. As such, we have introduced the `--diva_fixed`-flag which can be used to run the corrected fast momentum contrast/nce objective. Performance however remains effectively the same, so it is not necessarily needed._
+__Update 14/09/21:__ _There was a slight error in the uploaded `fast_moco.py` script resulting in negative reweighting different to that mentioned in the paper. As such, we have introduced the `--diva_fixed`-flag which can be used to run the corrected fast momentum contrast/nce objective. Performance however remains effectively the same, so it is not necessarily needed. Thanks to __BrandonHanx__ for noticing!_
 
 
 Training is done by using `diva_main.py`, with settings available in `parameters.py`. Exemplary runs are provided in `SampleRuns/ECCV2020_DiVA_SampleRuns.sh`.
