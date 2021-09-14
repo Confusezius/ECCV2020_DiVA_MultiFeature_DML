@@ -55,6 +55,10 @@ https://github.com/Confusezius/Revisiting_Deep_Metric_Learning_PyTorch
 
 ---
 ## Training:
+
+__Update 14/09/21:__ _There was a slight error in the uploaded `fast_moco.py` script resulting in negative reweighting different to that mentioned in the paper. As such, we have introduced the `--diva_fixed`-flag which can be used to run the corrected fast momentum contrast/nce objective. Performance however remains effectively the same, so it is not necessarily needed._
+
+
 Training is done by using `diva_main.py`, with settings available in `parameters.py`. Exemplary runs are provided in `SampleRuns/ECCV2020_DiVA_SampleRuns.sh`.
 Logging via `Weights and Biases` follows the same setup as in https://github.com/Confusezius/Revisiting_Deep_Metric_Learning_PyTorch.
 
@@ -68,7 +72,7 @@ python diva_main.py --dataset cub200 --log_online --project DiVA_SampleRuns --gr
                     --diva_sharing random --evaltypes all --diva_moco_temperature 0.01  --diva_moco_n_key_batches 30
                     --n_epochs 350 --seed 0 --gpu 0 --samples_per_class 2
                     --loss margin --batch_mining distance --arch resnet50_frozen_normalize
-                    --embed_dim 128
+                    --embed_dim 128 (--diva_fixed)
 ```
 
 We apply DiVA on CUB (`--dataset cub200`) and Margin Loss (`--loss margin`) with distance-based batchmining (`--batch_mining distance`).
