@@ -20,6 +20,8 @@ class Criterion(torch.nn.Module):
         """
         super(Criterion, self).__init__()
 
+        self.pars = opt
+        
         self.temperature   = opt.diva_moco_temperature
         self.momentum      = opt.diva_moco_momentum
         self.n_key_batches = opt.diva_moco_n_key_batches
@@ -100,10 +102,16 @@ class Criterion(torch.nn.Module):
 
         #Likelihood Weighting
         distance_weighting = ((2.0 - float(dim)) * torch.log(distances) - (float(dim-3) / 2) * torch.log(1.0 - 0.25 * (distances.pow(2))))
-        distance_weighting = torch.exp(distance_weighting - torch.max(distance_weighting))
+        if self.pars.diva_fixed:
+            distance_weighting = torch.exp(distance_weighting - torch.max(distance_weighting, dim=1, keepdims=True).values)
+        else:
+            distance_weighting = torch.exp(distance_weighting - torch.max(distance_weighting))
         distance_weighting[distances>self.upper_cutoff] = 0
         distance_weighting = distance_weighting.clamp(min=1e-45)
-        distance_weighting = distance_weighting/torch.sum(distance_weighting, dim=0)
+        if self.pars.diva_fixed:
+            distance_weighting = distance_weighting/torch.sum(distance_weighting, dim=1, keepdims=True)
+        else:
+            distance_weighting = distance_weighting/torch.sum(distance_weighting, dim=0)
 
         ###
         l_neg = l_neg*distance_weighting
